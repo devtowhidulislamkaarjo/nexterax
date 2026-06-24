@@ -64,6 +64,194 @@ document.querySelectorAll(".nav-phone").forEach((callLink) => {
   callLink.insertAdjacentElement("afterend", bookLink);
 });
 
+const originalTextNodes = new WeakMap();
+const originalAttributes = new WeakMap();
+const banglaTranslations = {
+  "Home": "হোম",
+  "Services": "সেবা",
+  "Pricing": "মূল্য",
+  "About": "সম্পর্কে",
+  "Blog": "ব্লগ",
+  "Contact": "যোগাযোগ",
+  "Call Now": "কল করুন",
+  "Book Now": "বুক করুন",
+  "Chat": "চ্যাট",
+  "Talk to NexteraX Digital": "NexteraX Digital-এর সাথে কথা বলুন",
+  "Usually replies fast on WhatsApp": "সাধারণত WhatsApp-এ দ্রুত উত্তর দেওয়া হয়",
+  "Chat on WhatsApp": "WhatsApp-এ চ্যাট করুন",
+  "Send email inquiry": "ইমেইল পাঠান",
+  "Use project form": "প্রজেক্ট ফর্ম ব্যবহার করুন",
+  "SERVICES": "সেবা",
+  "Choose the right digital solution for your next step": "আপনার পরবর্তী ধাপের জন্য সঠিক ডিজিটাল সমাধান বেছে নিন",
+  "Each service is designed around a simple business goal: get more leads, sell online, manage work better, improve user experience, or reduce manual tasks.": "প্রতিটি সেবা একটি সহজ ব্যবসায়িক লক্ষ্যের জন্য তৈরি: বেশি লিড পাওয়া, অনলাইনে বিক্রি, কাজ ভালোভাবে পরিচালনা, ব্যবহারকারীর অভিজ্ঞতা উন্নত করা বা ম্যানুয়াল কাজ কমানো।",
+  "Launch faster": "দ্রুত শুরু করুন",
+  "Sell online": "অনলাইনে বিক্রি করুন",
+  "Automate work": "কাজ অটোমেট করুন",
+  "Look premium": "প্রিমিয়াম দেখান",
+  "Website Development": "ওয়েবসাইট ডেভেলপমেন্ট",
+  "E-commerce Solutions": "ই-কমার্স সল্যুশন",
+  "Custom Software Development": "কাস্টম সফটওয়্যার ডেভেলপমেন্ট",
+  "UI/UX Design": "UI/UX ডিজাইন",
+  "Business Automation": "বিজনেস অটোমেশন",
+  "ABOUT": "সম্পর্কে",
+  "Empowering businesses with next-generation digital solutions": "নেক্সট-জেনারেশন ডিজিটাল সল্যুশন দিয়ে ব্যবসাকে এগিয়ে নেওয়া",
+  "Our vision is to help brands in Bangladesh and beyond compete with world-class digital experiences, reliable systems, and confident online growth.": "বাংলাদেশসহ বিশ্বজুড়ে ব্র্যান্ডগুলোকে বিশ্বমানের ডিজিটাল অভিজ্ঞতা, নির্ভরযোগ্য সিস্টেম এবং আত্মবিশ্বাসী অনলাইন গ্রোথে সাহায্য করাই আমাদের লক্ষ্য।",
+  "FOUNDER & CEO": "প্রতিষ্ঠাতা ও সিইও",
+  "Founder & CEO": "প্রতিষ্ঠাতা ও সিইও",
+  "Towhidul Islam": "তৌহিদুল ইসলাম",
+  "NexteraX Digital": "নেক্সটেরাক্স ডিজিটাল",
+  "FOUNDER": "প্রতিষ্ঠাতা",
+  "DESIGN": "ডিজাইন",
+  "ENGINEERING": "ইঞ্জিনিয়ারিং",
+  "Digital Strategist": "ডিজিটাল স্ট্র্যাটেজিস্ট",
+  "UI/UX Team": "UI/UX টিম",
+  "Development Team": "ডেভেলপমেন্ট টিম",
+  "Leads discovery, scope, and growth direction.": "ডিসকভারি, কাজের পরিধি এবং গ্রোথ দিকনির্দেশনা পরিচালনা করে।",
+  "Crafts elegant flows and polished brand experiences.": "সুন্দর ইউজার ফ্লো এবং প্রিমিয়াম ব্র্যান্ড অভিজ্ঞতা তৈরি করে।",
+  "Builds stable, optimized, production-ready systems.": "স্থিতিশীল, অপ্টিমাইজড এবং প্রোডাকশন-রেডি সিস্টেম তৈরি করে।",
+  "PORTFOLIO": "পোর্টফোলিও",
+  "Selected work": "নির্বাচিত কাজ",
+  "Lightweight project cards with clear context, faster loading, and direct links to the live websites.": "পরিষ্কার তথ্য, দ্রুত লোডিং এবং লাইভ ওয়েবসাইটে যাওয়ার সরাসরি লিংকসহ প্রজেক্ট কার্ড।",
+  "Business Website": "বিজনেস ওয়েবসাইট",
+  "Digital Platform": "ডিজিটাল প্ল্যাটফর্ম",
+  "Live website": "লাইভ ওয়েবসাইট",
+  "View live": "লাইভ দেখুন",
+  "CONTENT PRICING": "কনটেন্ট মূল্য",
+  "Content support that matches your launch plan": "আপনার লঞ্চ প্ল্যানের সাথে মানানসই কনটেন্ট সাপোর্ট",
+  "Basic website content writing is included. Clients can provide final content, or NexteraX Digital can create premium, SEO optimized content for stronger conversion and search visibility.": "বেসিক ওয়েবসাইট কনটেন্ট রাইটিং অন্তর্ভুক্ত। ক্লায়েন্ট চাইলে ফাইনাল কনটেন্ট দিতে পারেন, অথবা ভালো কনভার্সন ও সার্চ ভিজিবিলিটির জন্য NexteraX Digital প্রিমিয়াম SEO-অপ্টিমাইজড কনটেন্ট তৈরি করতে পারে।",
+  "Basic content": "বেসিক কনটেন্ট",
+  "Free": "ফ্রি",
+  "SEO content writing": "SEO কনটেন্ট রাইটিং",
+  "Full website copywriting": "ফুল ওয়েবসাইট কপিরাইটিং",
+  "CONTACT": "যোগাযোগ",
+  "Tell us about your project": "আপনার প্রজেক্ট সম্পর্কে বলুন",
+  "Send message": "মেসেজ পাঠান",
+  "Name": "নাম",
+  "Email": "ইমেইল",
+  "Message": "মেসেজ"
+};
+
+const translatableAttributes = ["aria-label", "placeholder", "title", "alt"];
+const ignoredTranslationTags = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "SVG", "CANVAS"]);
+
+const clearGoogleTranslateState = () => {
+  document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+  document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=${location.hostname}`;
+};
+
+const normalizeTranslationKey = (text) => text.trim().replace(/\s+/g, " ");
+
+const translateValue = (value, language) => {
+  const normalized = normalizeTranslationKey(value);
+  if (!normalized || language === "en") return value;
+  const translated = banglaTranslations[normalized];
+  if (!translated) return value;
+  const leading = value.match(/^\s*/)?.[0] || "";
+  const trailing = value.match(/\s*$/)?.[0] || "";
+  return `${leading}${translated}${trailing}`;
+};
+
+const translateTextNode = (node, language) => {
+  if (!originalTextNodes.has(node)) originalTextNodes.set(node, node.textContent);
+  const original = originalTextNodes.get(node);
+  node.textContent = language === "bn" ? translateValue(original, language) : original;
+};
+
+const translateElementAttributes = (element, language) => {
+  translatableAttributes.forEach((attribute) => {
+    if (!element.hasAttribute(attribute)) return;
+    if (!originalAttributes.has(element)) originalAttributes.set(element, {});
+    const originals = originalAttributes.get(element);
+    if (!originals[attribute]) originals[attribute] = element.getAttribute(attribute);
+    const original = originals[attribute];
+    element.setAttribute(attribute, language === "bn" ? translateValue(original, language) : original);
+  });
+};
+
+const applyLocalTranslation = (language) => {
+  document.documentElement.lang = language === "bn" ? "bn" : "en";
+  document.documentElement.classList.toggle("bangla-mode", language === "bn");
+
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      const parent = node.parentElement;
+      if (!parent || ignoredTranslationTags.has(parent.tagName) || parent.closest(".no-translate")) {
+        return NodeFilter.FILTER_REJECT;
+      }
+      return normalizeTranslationKey(node.textContent) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+
+  const textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
+  textNodes.forEach((node) => translateTextNode(node, language));
+
+  document.querySelectorAll("body *").forEach((element) => {
+    if (!ignoredTranslationTags.has(element.tagName) && !element.closest(".no-translate")) {
+      translateElementAttributes(element, language);
+    }
+  });
+
+  const toggle = document.querySelector(".translate-toggle");
+  if (toggle) {
+    toggle.textContent = language === "bn" ? "English" : "বাংলা";
+    toggle.setAttribute("aria-label", language === "bn" ? "Switch website to English" : "ওয়েবসাইট বাংলায় দেখুন");
+  }
+};
+
+const getTranslationLanguage = () => localStorage.getItem("nexterax-language") === "bn" ? "bn" : "en";
+
+const translatePage = (language) => {
+  localStorage.setItem("nexterax-language", language);
+  applyLocalTranslation(language);
+};
+
+const addTranslationControl = () => {
+  const actions = document.querySelector(".header-actions");
+  if (!actions || actions.querySelector(".translate-toggle")) return;
+
+  const language = getTranslationLanguage();
+  const button = document.createElement("button");
+  button.className = "translate-toggle no-translate";
+  button.type = "button";
+  button.textContent = language === "bn" ? "English" : "বাংলা";
+  button.setAttribute("aria-label", language === "bn" ? "Switch website to English" : "Translate website to Bangla");
+  button.addEventListener("click", () => translatePage(language === "bn" ? "en" : "bn"));
+  actions.prepend(button);
+};
+
+clearGoogleTranslateState();
+addTranslationControl();
+
+document.querySelectorAll(".service-card").forEach((card) => {
+  const cardLink = card.querySelector(".text-link[href]");
+  if (!cardLink) return;
+
+  card.classList.add("tap-card");
+  card.setAttribute("role", "link");
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("aria-label", cardLink.textContent.trim());
+
+  const openCardLink = () => {
+    if (cardLink.target === "_blank") {
+      window.open(cardLink.href, "_blank", "noopener");
+      return;
+    }
+    window.location.href = cardLink.href;
+  };
+
+  card.addEventListener("click", (event) => {
+    if (event.target.closest("a, button, input, textarea, select, summary")) return;
+    openCardLink();
+  });
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    openCardLink();
+  });
+});
+
 document.querySelectorAll("a[href]").forEach((link) => {
   const rawHref = link.getAttribute("href");
 
@@ -188,3 +376,5 @@ document.addEventListener("keydown", (event) => {
     chatPanel.setAttribute("aria-hidden", "true");
   }
 });
+
+applyLocalTranslation(getTranslationLanguage());
