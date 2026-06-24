@@ -1,0 +1,13 @@
+Options -MultiViews
+RewriteEngine On
+
+RewriteRule ^home/?$ index.html [L]
+RewriteRule ^services/?$ services.html [L]
+RewriteRule ^pricing/?$ index.html#pricing [R=302,L]
+RewriteRule ^about/?$ index.html#about [R=302,L]
+RewriteRule ^contact/?$ index.html#contact [R=302,L]
+RewriteRule ^website-development/?$ website-development.html [L]
+RewriteRule ^ecommerce-solutions/?$ ecommerce-solutions.html [L]
+RewriteRule ^custom-software/?$ custom-software.html [L]
+RewriteRule ^ui-ux-design/?$ ui-ux-design.html [L]
+RewriteRule ^business-automation/?$ business-automation.html [L]

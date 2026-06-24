@@ -1,0 +1,16 @@
+{
+  "name": "NexteraX Digital",
+  "short_name": "NexteraX",
+  "description": "Digital agency for websites, e-commerce, software, UI/UX, and automation.",
+  "start_url": "/home",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1E2A78",
+  "icons": [
+    {
+      "src": "/nexterax-digital-logo-cropped.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

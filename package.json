@@ -1,0 +1,12 @@
+{
+  "name": "nexterax-digital",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static marketing website for NexteraX Digital.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
