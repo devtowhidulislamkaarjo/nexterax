@@ -27,8 +27,13 @@ const routes = {
   "/home": "index.html",
   "/services": "services.html",
   "/pricing": "index.html",
-  "/about": "index.html",
+  "/about": "about.html",
   "/contact": "index.html",
+  "/blog": "blog.html",
+  "/blog/website-development-business-growth": "blog-website-development-business-growth.html",
+  "/blog/ecommerce-website-bangladesh": "blog-ecommerce-website-bangladesh.html",
+  "/blog/business-automation-benefits": "blog-business-automation-benefits.html",
+  "/blog/ui-ux-design-conversion": "blog-ui-ux-design-conversion.html",
   "/website-development": "website-development.html",
   "/ecommerce-solutions": "ecommerce-solutions.html",
   "/custom-software": "custom-software.html",
@@ -44,7 +49,13 @@ const redirects = {
   "/ecommerce-solutions.html": "/ecommerce-solutions",
   "/custom-software.html": "/custom-software",
   "/ui-ux-design.html": "/ui-ux-design",
-  "/business-automation.html": "/business-automation"
+  "/business-automation.html": "/business-automation",
+  "/about.html": "/about",
+  "/blog.html": "/blog",
+  "/blog-website-development-business-growth.html": "/blog/website-development-business-growth",
+  "/blog-ecommerce-website-bangladesh.html": "/blog/ecommerce-website-bangladesh",
+  "/blog-business-automation-benefits.html": "/blog/business-automation-benefits",
+  "/blog-ui-ux-design-conversion.html": "/blog/ui-ux-design-conversion"
 };
 
 const types = {

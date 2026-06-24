@@ -3,12 +3,25 @@ const menu = document.querySelector("[data-menu]");
 const nav = document.querySelector("[data-nav]");
 const revealItems = document.querySelectorAll(".reveal");
 const newsletterForm = document.querySelector("[data-newsletter-form]");
+
+if (!document.querySelector('link[rel="icon"]')) {
+  const favicon = document.createElement("link");
+  favicon.rel = "icon";
+  favicon.type = "image/png";
+  favicon.href = "/nexterax-digital-logo.png";
+  document.head.appendChild(favicon);
+}
 const cleanRoutes = {
   "/home": "index.html#home",
   "/services": "services.html",
   "/pricing": "index.html#pricing",
-  "/about": "index.html#about",
+  "/about": "about.html",
   "/contact": "index.html#contact",
+  "/blog": "blog.html",
+  "/blog/website-development-business-growth": "blog-website-development-business-growth.html",
+  "/blog/ecommerce-website-bangladesh": "blog-ecommerce-website-bangladesh.html",
+  "/blog/business-automation-benefits": "blog-business-automation-benefits.html",
+  "/blog/ui-ux-design-conversion": "blog-ui-ux-design-conversion.html",
   "/website-development": "website-development.html",
   "/ecommerce-solutions": "ecommerce-solutions.html",
   "/custom-software": "custom-software.html",
@@ -23,8 +36,33 @@ const prettyRoutes = {
   "ecommerce-solutions.html": "/ecommerce-solutions",
   "custom-software.html": "/custom-software",
   "ui-ux-design.html": "/ui-ux-design",
-  "business-automation.html": "/business-automation"
+  "business-automation.html": "/business-automation",
+  "about.html": "/about",
+  "blog.html": "/blog",
+  "blog-website-development-business-growth.html": "/blog/website-development-business-growth",
+  "blog-ecommerce-website-bangladesh.html": "/blog/ecommerce-website-bangladesh",
+  "blog-business-automation-benefits.html": "/blog/business-automation-benefits",
+  "blog-ui-ux-design-conversion.html": "/blog/ui-ux-design-conversion"
 };
+
+if (nav && !nav.querySelector('a[href="/blog"]')) {
+  const blogLink = document.createElement("a");
+  blogLink.href = "/blog";
+  blogLink.textContent = "Blog";
+  const contactLink = nav.querySelector('a[href="/contact"]');
+  nav.insertBefore(blogLink, contactLink || null);
+}
+
+document.querySelectorAll(".nav-phone").forEach((callLink) => {
+  callLink.classList.add("nav-cta", "nav-call");
+  callLink.textContent = "Call Now";
+
+  const bookLink = document.createElement("a");
+  bookLink.className = "nav-cta nav-book";
+  bookLink.href = "/contact";
+  bookLink.textContent = "Book Now";
+  callLink.insertAdjacentElement("afterend", bookLink);
+});
 
 document.querySelectorAll("a[href]").forEach((link) => {
   const rawHref = link.getAttribute("href");
