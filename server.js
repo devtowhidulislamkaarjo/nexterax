@@ -36,6 +36,17 @@ const routes = {
   "/business-automation": "business-automation.html"
 };
 
+const redirects = {
+  "/service": "/services",
+  "/index.html": "/home",
+  "/services.html": "/services",
+  "/website-development.html": "/website-development",
+  "/ecommerce-solutions.html": "/ecommerce-solutions",
+  "/custom-software.html": "/custom-software",
+  "/ui-ux-design.html": "/ui-ux-design",
+  "/business-automation.html": "/business-automation"
+};
+
 const types = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -66,6 +77,20 @@ http.createServer((request, response) => {
 
   const url = new URL(request.url, `http://${request.headers.host}`);
 
+  const normalizedPath = url.pathname.replace(/\/+$/, "") || "/";
+  const redirectTo = redirects[normalizedPath];
+  if (redirectTo) {
+    response.writeHead(308, { ...securityHeaders, Location: redirectTo });
+    response.end();
+    return;
+  }
+
+  if (url.pathname !== "/" && url.pathname.endsWith("/")) {
+    response.writeHead(308, { ...securityHeaders, Location: normalizedPath });
+    response.end();
+    return;
+  }
+
   if (!isProduction && url.pathname === "/_live-reload") {
     response.writeHead(200, {
       ...securityHeaders,
@@ -79,7 +104,7 @@ http.createServer((request, response) => {
     return;
   }
 
-  const routeFile = routes[url.pathname.replace(/\/$/, "") || "/"];
+  const routeFile = routes[normalizedPath];
   const requestedFile = routeFile || url.pathname.slice(1);
   const filePath = path.resolve(root, requestedFile);
 
@@ -122,11 +147,21 @@ http.createServer((request, response) => {
 });
 
 if (!isProduction) {
-  fs.watch(root, { recursive: true }, (_eventType, filename) => {
-    if (!filename || filename.startsWith(".git")) return;
+  try {
+    // Recursive file watching is supported on Windows and macOS, but not on
+    // every Linux host (including many cloud runtimes).
+    const watcher = fs.watch(root, { recursive: process.platform !== "linux" }, (_eventType, filename) => {
+      if (!filename || filename.startsWith(".git")) return;
 
-    for (const client of liveReloadClients) {
-      client.write("event: reload\ndata: changed\n\n");
-    }
-  });
+      for (const client of liveReloadClients) {
+        client.write("event: reload\ndata: changed\n\n");
+      }
+    });
+
+    watcher.on("error", (error) => {
+      console.warn("Live reload watcher stopped:", error.message);
+    });
+  } catch (error) {
+    console.warn("Live reload is unavailable:", error.message);
+  }
 }
