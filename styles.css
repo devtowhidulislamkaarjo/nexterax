@@ -2234,6 +2234,7 @@ blockquote {
   display: grid;
   justify-items: end;
   gap: 12px;
+  pointer-events: none;
 }
 
 .chat-toggle {
@@ -2250,6 +2251,7 @@ blockquote {
   box-shadow: 0 18px 46px rgba(24, 185, 104, 0.34);
   cursor: pointer;
   font-weight: 900;
+  pointer-events: auto;
 }
 
 .chat-panel {
@@ -2676,6 +2678,20 @@ blockquote {
 .service-card .text-link {
   min-height: 48px;
   align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  color: white !important;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  box-shadow: 0 14px 34px rgba(108, 99, 255, 0.22);
+}
+
+.service-card .text-link:hover {
+  color: white !important;
+  background: linear-gradient(135deg, #111111, var(--blue) 52%, var(--purple));
+  transform: translateY(-1px);
 }
 
 .service-page-button {
@@ -2759,5 +2775,115 @@ blockquote {
 
   .service-faq p {
     padding: 0 18px 20px;
+  }
+}
+
+/* Make CTA links feel like buttons and avoid mobile double-tap hover issues */
+.text-link {
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  color: var(--blue);
+  background: rgba(108, 99, 255, 0.08);
+}
+
+.text-link:hover {
+  color: white;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+}
+
+a.button,
+a.text-link,
+a.service-page-button,
+.service-sidebar a {
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  a,
+  button,
+  summary,
+  .tap-card {
+    touch-action: manipulation;
+  }
+
+  .button:hover,
+  .service-card:hover,
+  .price-card:hover,
+  .portfolio-card:hover,
+  blockquote:hover,
+  .text-link:hover {
+    transform: none;
+  }
+
+  .text-link:hover {
+    color: var(--blue);
+    background: rgba(108, 99, 255, 0.08);
+  }
+
+  .button:active,
+  .text-link:active,
+  .service-page-button:active,
+  .service-sidebar a:active,
+  .tap-card:active {
+    transform: scale(0.985);
+  }
+}
+
+/* Button-style links across the website */
+a[href] {
+  -webkit-tap-highlight-color: rgba(108, 99, 255, 0.16);
+  touch-action: manipulation;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  background: rgba(108, 99, 255, 0.08);
+}
+
+main a[href]:not(.button):not(.text-link):not(.brand),
+.footer a[href]:not(.brand):not(.button):not(.text-link) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  color: var(--blue);
+  background: rgba(108, 99, 255, 0.08);
+  font-weight: 900;
+}
+
+main a[href]:not(.button):not(.text-link):not(.brand):hover,
+.footer a[href]:not(.brand):not(.button):not(.text-link):hover {
+  color: white;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+}
+
+@media (max-width: 700px) {
+  main a[href]:not(.brand),
+  .footer a[href]:not(.brand),
+  .nav a {
+    min-height: 52px;
+  }
+
+  main a[href]:not(.brand):not(.button):not(.text-link),
+  .footer a[href]:not(.brand):not(.button):not(.text-link) {
+    width: 100%;
+    padding: 15px 18px;
   }
 }
