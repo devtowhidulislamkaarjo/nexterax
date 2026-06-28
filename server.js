@@ -24,11 +24,8 @@ const liveReloadScript = `
 
 const routes = {
   "/": "index.html",
-  "/home": "index.html",
   "/services": "services.html",
-  "/pricing": "index.html",
   "/about": "about.html",
-  "/contact": "index.html",
   "/blog": "blog.html",
   "/blog/website-development-business-growth": "blog-website-development-business-growth.html",
   "/blog/ecommerce-website-bangladesh": "blog-ecommerce-website-bangladesh.html",
@@ -43,7 +40,10 @@ const routes = {
 
 const redirects = {
   "/service": "/services",
-  "/index.html": "/home",
+  "/home": "/",
+  "/pricing": "/#pricing",
+  "/contact": "/#contact",
+  "/index.html": "/",
   "/services.html": "/services",
   "/website-development.html": "/website-development",
   "/ecommerce-solutions.html": "/ecommerce-solutions",
@@ -154,7 +154,7 @@ http.createServer((request, response) => {
     response.end(request.method === "HEAD" ? undefined : responseContent);
   });
 }).listen(port, () => {
-  console.log(`NexteraX Digital running at http://localhost:${port}/home`);
+  console.log(`NexteraX Digital running at http://localhost:${port}/`);
 });
 
 if (!isProduction) {

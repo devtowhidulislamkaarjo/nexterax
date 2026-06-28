@@ -1,8 +1,13 @@
-/home /index.html 200
+/home / 301
+/pricing / 301
+/contact / 301
 /services /services.html 200
-/pricing /index.html 200
-/about /index.html 200
-/contact /index.html 200
+/about /about.html 200
+/blog /blog.html 200
+/blog/website-development-business-growth /blog-website-development-business-growth.html 200
+/blog/ecommerce-website-bangladesh /blog-ecommerce-website-bangladesh.html 200
+/blog/business-automation-benefits /blog-business-automation-benefits.html 200
+/blog/ui-ux-design-conversion /blog-ui-ux-design-conversion.html 200
 /website-development /website-development.html 200
 /ecommerce-solutions /ecommerce-solutions.html 200
 /custom-software /custom-software.html 200

@@ -129,6 +129,18 @@ const banglaTranslations = {
   "Name": "নাম",
   "Email": "ইমেইল",
   "Message": "মেসেজ"
+  ,
+  "Company": "কোম্পানি",
+  "Start a project": "প্রজেক্ট শুরু করুন",
+  "NexteraX Digital builds premium websites, e-commerce stores, software systems, UI/UX designs, and automation workflows for growing businesses.": "NexteraX Digital গ্রোয়িং বিজনেসের জন্য প্রিমিয়াম ওয়েবসাইট, ই-কমার্স স্টোর, সফটওয়্যার সিস্টেম, UI/UX ডিজাইন এবং অটোমেশন ওয়ার্কফ্লো তৈরি করে।",
+  "Have an idea or need a digital system? Tell us your goal and we will suggest the right scope.": "আইডিয়া আছে বা ডিজিটাল সিস্টেম দরকার? আপনার লক্ষ্য বলুন, আমরা সঠিক স্কোপ সাজেস্ট করব।",
+  "Book on WhatsApp": "WhatsApp-এ বুক করুন",
+  "Get digital growth tips": "ডিজিটাল গ্রোথ টিপস নিন",
+  "Your email": "আপনার ইমেইল",
+  "Join": "জয়েন করুন",
+  "© 2026 NexteraX Digital. All rights reserved.": "© ২০২৬ NexteraX Digital. সর্বস্বত্ব সংরক্ষিত।",
+  "WhatsApp": "WhatsApp",
+  "Call": "কল"
 };
 
 const translatableAttributes = ["aria-label", "placeholder", "title", "alt"];
@@ -222,6 +234,68 @@ const addTranslationControl = () => {
 
 clearGoogleTranslateState();
 addTranslationControl();
+
+const renderIndustryFooter = () => {
+  const footer = document.querySelector(".footer");
+  if (!footer) return;
+
+  footer.className = "footer industry-footer";
+  footer.innerHTML = `
+    <div class="container footer-shell">
+      <div class="footer-brand-block">
+        <a class="brand footer-brand" href="/home" aria-label="NexteraX Digital home">
+          <img class="brand-logo" src="/nexterax-digital-logo-cropped.png" onerror="this.src='/nexterax-digital-logo.png'" alt="NexteraX Digital logo">
+        </a>
+        <p>NexteraX Digital builds premium websites, e-commerce stores, software systems, UI/UX designs, and automation workflows for growing businesses.</p>
+        <div class="footer-socials" aria-label="Contact links">
+          <a href="https://wa.me/8801878601610" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:towhidulislam2.bd@gmail.com">Email</a>
+          <a href="tel:+8801878601610">Call</a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h2>Company</h2>
+        <a href="/home">Home</a>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Contact</a>
+      </div>
+
+      <div class="footer-column">
+        <h2>Services</h2>
+        <a href="/website-development">Website Development</a>
+        <a href="/ecommerce-solutions">E-commerce Solutions</a>
+        <a href="/custom-software">Custom Software</a>
+        <a href="/ui-ux-design">UI/UX Design</a>
+        <a href="/business-automation">Business Automation</a>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h2>Start a project</h2>
+        <p>Have an idea or need a digital system? Tell us your goal and we will suggest the right scope.</p>
+        <a class="footer-cta" href="https://wa.me/8801878601610?text=Hi%20NexteraX%20Digital%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener">Book on WhatsApp</a>
+        <form class="footer-newsletter" data-newsletter-form>
+          <label for="footer-email">Get digital growth tips</label>
+          <div>
+            <input id="footer-email" type="email" placeholder="Your email" aria-label="Email for updates" autocomplete="email" required>
+            <button type="submit">Join</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 NexteraX Digital. All rights reserved.</p>
+      <div>
+        <a href="/pricing">Pricing</a>
+        <a href="/services">Services</a>
+      </div>
+    </div>
+  `;
+};
+
+renderIndustryFooter();
 
 document.querySelectorAll(".service-card").forEach((card) => {
   const cardLink = card.querySelector(".text-link[href]");
@@ -332,12 +406,12 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((item) => item.classList.add("visible"));
 }
 
-if (newsletterForm) {
-  newsletterForm.addEventListener("submit", (event) => {
+document.querySelectorAll("[data-newsletter-form]").forEach((form) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
-    newsletterForm.reset();
+    form.reset();
   });
-}
+});
 
 const chatWidget = document.createElement("div");
 chatWidget.className = "chat-widget";

@@ -3,21 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="NexteraX Digital builds premium websites, e-commerce platforms, custom software, UI/UX design, and digital transformation solutions in Bangladesh and globally.">
+    <meta name="description" content="NexteraX Digital helps businesses grow with modern website development, e-commerce solutions, custom software, UI/UX design, and business automation.">
     <meta name="theme-color" content="#1E2A78">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://nexteraxdigital.com/home">
+    <link rel="canonical" href="https://nexterax-digital.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="NexteraX Digital">
-    <meta property="og:title" content="Digital Agency in Bangladesh | Websites, Software & UI/UX | NexteraX Digital">
-    <meta property="og:description" content="NexteraX Digital builds premium websites, e-commerce platforms, custom software, UI/UX design, and digital transformation solutions in Bangladesh and globally.">
-    <meta property="og:url" content="https://nexteraxdigital.com/home">
-    <meta property="og:image" content="https://nexteraxdigital.com/nexterax-digital-logo-cropped.png">
+    <meta property="og:title" content="NexteraX Digital | Website Development, Software & Digital Solutions">
+    <meta property="og:description" content="NexteraX Digital helps businesses grow with modern website development, e-commerce solutions, custom software, UI/UX design, and business automation.">
+    <meta property="og:url" content="https://nexterax-digital.com/">
+    <meta property="og:image" content="https://nexterax-digital.com/og-image.jpg">
+    <meta property="og:image:secure_url" content="https://nexterax-digital.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="NexteraX Digital website development, software, and digital solutions">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Digital Agency in Bangladesh | Websites, Software & UI/UX | NexteraX Digital">
-    <meta name="twitter:description" content="NexteraX Digital builds premium websites, e-commerce platforms, custom software, UI/UX design, and digital transformation solutions in Bangladesh and globally.">
-    <meta name="twitter:image" content="https://nexteraxdigital.com/nexterax-digital-logo-cropped.png">
-    <title>Digital Agency in Bangladesh | Websites, Software & UI/UX | NexteraX Digital</title>
+    <meta name="twitter:title" content="NexteraX Digital | Website Development, Software & Digital Solutions">
+    <meta name="twitter:description" content="NexteraX Digital helps businesses grow with modern website development, e-commerce solutions, custom software, UI/UX design, and business automation.">
+    <meta name="twitter:image" content="https://nexterax-digital.com/og-image.jpg">
+    <meta name="twitter:image:alt" content="NexteraX Digital website development, software, and digital solutions">
+    <title>NexteraX Digital | Website Development, Software & Digital Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -26,15 +32,15 @@
   </head>
   <body>
     <header class="site-header" data-header>
-      <a class="brand" href="/home" aria-label="NexteraX Digital home">
+      <a class="brand" href="/" aria-label="NexteraX Digital home">
         <img class="brand-logo" src="nexterax-digital-logo-cropped.png" onerror="this.src='nexterax-digital-logo.png'" alt="NexteraX Digital logo">
       </a>
       <nav class="nav" id="primary-navigation" data-nav aria-label="Primary navigation">
-        <a href="/home">Home</a>
+        <a href="/">Home</a>
         <a href="/services">Services</a>
-        <a href="/pricing">Pricing</a>
+        <a href="#pricing">Pricing</a>
         <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <a href="#contact">Contact</a>
       </nav>
       <div class="header-actions">
         <a class="nav-phone" href="tel:+8801878601610">01878601610</a>
@@ -334,7 +340,7 @@
 
     <footer class="footer">
       <div class="container footer-grid">
-        <a class="brand" href="/home"><img class="brand-logo" src="nexterax-digital-logo-cropped.png" onerror="this.src='nexterax-digital-logo.png'" alt="NexteraX Digital logo"></a>
+        <a class="brand" href="/"><img class="brand-logo" src="nexterax-digital-logo-cropped.png" onerror="this.src='nexterax-digital-logo.png'" alt="NexteraX Digital logo"></a>
         <p>Modern digital agency for websites, e-commerce, software, UI/UX, and transformation.</p>
         <form class="newsletter" data-newsletter-form><input type="email" placeholder="Email for updates" aria-label="Email for updates" autocomplete="email" required><button type="submit">Join</button></form>
       </div>
@@ -343,14 +349,50 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "NexteraX Digital",
-        "url": "https://nexteraxdigital.com",
-        "logo": "https://nexteraxdigital.com/nexterax-digital-logo-cropped.png",
-        "telephone": "+8801878601610",
-        "email": "towhidulislam2.bd@gmail.com",
-        "areaServed": ["Bangladesh", "Worldwide"],
-        "serviceType": ["Website Development", "E-commerce Solutions", "Custom Software Development", "UI/UX Design", "Business Automation"]
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://nexterax-digital.com/#organization",
+            "name": "NexteraX Digital",
+            "url": "https://nexterax-digital.com/",
+            "logo": "https://nexterax-digital.com/og-image.jpg",
+            "telephone": "+8801878601610",
+            "email": "towhidulislam2.bd@gmail.com"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://nexterax-digital.com/#website",
+            "url": "https://nexterax-digital.com/",
+            "name": "NexteraX Digital",
+            "publisher": {
+              "@id": "https://nexterax-digital.com/#organization"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://nexterax-digital.com/#webpage",
+            "url": "https://nexterax-digital.com/",
+            "name": "NexteraX Digital | Website Development, Software & Digital Solutions",
+            "isPartOf": {
+              "@id": "https://nexterax-digital.com/#website"
+            },
+            "about": {
+              "@id": "https://nexterax-digital.com/#organization"
+            },
+            "description": "NexteraX Digital helps businesses grow with modern website development, e-commerce solutions, custom software, UI/UX design, and business automation."
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://nexterax-digital.com/#service",
+            "name": "NexteraX Digital",
+            "url": "https://nexterax-digital.com/",
+            "logo": "https://nexterax-digital.com/og-image.jpg",
+            "telephone": "+8801878601610",
+            "email": "towhidulislam2.bd@gmail.com",
+            "areaServed": ["Bangladesh", "Worldwide"],
+            "serviceType": ["Website Development", "E-commerce Solutions", "Custom Software Development", "UI/UX Design", "Business Automation"]
+          }
+        ]
       }
     </script>
     <script src="script.js"></script>
