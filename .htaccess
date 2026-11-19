@@ -1,11 +1,19 @@
 Options -MultiViews
 RewriteEngine On
+DirectoryIndex index.html
 
-RewriteRule ^home/?$ index.html [L]
+RewriteRule ^home/?$ / [R=301,L]
+RewriteRule ^service/?$ /services [R=301,L]
+RewriteRule ^pricing/?$ /#pricing [R=302,L,NE]
+RewriteRule ^contact/?$ /#contact [R=302,L,NE]
+
 RewriteRule ^services/?$ services.html [L]
-RewriteRule ^pricing/?$ index.html#pricing [R=302,L]
-RewriteRule ^about/?$ index.html#about [R=302,L]
-RewriteRule ^contact/?$ index.html#contact [R=302,L]
+RewriteRule ^about/?$ about.html [L]
+RewriteRule ^blog/?$ blog.html [L]
+RewriteRule ^blog/website-development-business-growth/?$ blog-website-development-business-growth.html [L]
+RewriteRule ^blog/ecommerce-website-bangladesh/?$ blog-ecommerce-website-bangladesh.html [L]
+RewriteRule ^blog/business-automation-benefits/?$ blog-business-automation-benefits.html [L]
+RewriteRule ^blog/ui-ux-design-conversion/?$ blog-ui-ux-design-conversion.html [L]
 RewriteRule ^website-development/?$ website-development.html [L]
 RewriteRule ^ecommerce-solutions/?$ ecommerce-solutions.html [L]
 RewriteRule ^custom-software/?$ custom-software.html [L]

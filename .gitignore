@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+**/node_modules/
+/.pnp
+.pnp.*
+
+# Next.js & build outputs
+.next/
+**/.next/
+out/
+**/out/
+build/
+dist/
+
+# TypeScript cache
+*.tsbuildinfo
+**/next-env.d.ts
+
+# Environment & secrets
+.env
+.env.*
+!**/.env.example
+*.pem
+
+# Packaged deployment archives
+*.zip
+*.tar.gz
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*.swo
