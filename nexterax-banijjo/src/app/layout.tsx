@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 const SITE_URL =
@@ -328,6 +329,16 @@ export default function RootLayout({
       className="overflow-x-hidden scroll-smooth"
     >
       <head>
+        <Script
+          id="google-tag-manager"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-PBSZLL7T"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+gtag('js', new Date());`}
+        </Script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -351,6 +362,14 @@ export default function RootLayout({
         suppressHydrationWarning
         className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#FBF6EC] text-[#241C21] antialiased selection:bg-[#650039] selection:text-white"
       >
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PBSZLL7T"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {children}
       </body>
     </html>
